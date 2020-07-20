@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Quản Lý Chấm Bài</string>
+    <string name="hoten">Nhập họ tên</string>
+    <string name="gtnam">Nam</string>
+    <string name="gtnu">Nữ</string>
+    <string name="them">Thêm</string>
+    <string name="xoa">Xóa</string>
+    <string name="sua">Sửa</string>
+    <string name="clear">Clear</string>
+    <string name="thongtin">Thông Tin</string>
+    <string name="ma">Nhập Mã Giáo Viên</string>
+    <string name="sdt">Nhập Số Điện Thoại</string>
+    <string name="chucnang">Chức Năng</string>
+    <string name="thongTinChamBai">Thông Tin Chấm Bài</string>
+    <string name="tenmonhoc">Nhập tên môn học</string>
+    <string name="mamonhoc">Mã môn học</string>
+    <string name="chiphi">Nhập chi phí</string>
+    <string name="soBai">Nhập số bài</string>
+    <string name="soPhieu">Số phiếu</string>
+    <string name="dsMonHoc">Danh Sách Môn Học</string>
+    <string name="search">Search</string>
+    <string name="dsThongTinChamBai">Danh Sách TT Chấm Bài</string>
+</resources>

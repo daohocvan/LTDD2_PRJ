@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".GiaoDien.MainActivity">
+
+
+    <TextView
+        style="@style/tieude"
+        android:background="#00BCD4"
+        android:text="@string/thongtin" />
+
+    <Spinner
+        android:id="@+id/spMaMonHoc"
+        style="@style/sp"/>
+
+    <EditText
+        android:id="@+id/txtTenMonHoc"
+        style="@style/txt"
+        android:hint="@string/tenmonhoc" />
+
+    <EditText
+        android:id="@+id/txtChiPhi"
+        style="@style/txt"
+        android:hint="@string/chiphi"
+        android:inputType="number" />
+
+    <TextView
+        style="@style/tieude"
+        android:text="@string/chucnang"
+       />
+
+
+    <LinearLayout style="@style/chucnang">
+
+        <Button
+            android:id="@+id/btnThem"
+            style="@style/btn"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/them"
+            android:drawableLeft="@drawable/ic_add_black_24dp"
+            android:text="@string/them"
+            android:textColorLink="#CDDC39" />
+           />
+
+
+        <Button
+            android:id="@+id/btnClear"
+            style="@style/btn"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/them"
+            android:drawableLeft="@drawable/ic_clear_alll_black_24dp"
+            android:text="@string/clear"
+            android:textColorLink="#CDDC39" />
+        />
+    </LinearLayout>
+
+    <TextView
+        style="@style/tieude"
+
+        android:text="@string/dsMonHoc"
+       />
+
+    <ListView
+        android:id="@+id/lvDanhSach"
+        style="@style/lvDanhSach"></ListView>
+</LinearLayout>

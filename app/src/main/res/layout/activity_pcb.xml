@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".GiaoDien.GiaoVienActivity">
+
+    <EditText
+        android:id="@+id/txtMa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Số Phiếu" />
+
+    <EditText
+        android:id="@+id/txtHoTen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ngày Giao Bài" />
+
+    <EditText
+        android:id="@+id/txtsdt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/ma" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnThem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_insert_invitation_black_24dp"
+            android:text="@string/them" />
+
+        */
+        <Button
+            android:id="@+id/btnClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_clear_all_black_24dp"
+            android:text="@string/clear" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lvDanhSach"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</LinearLayout>
