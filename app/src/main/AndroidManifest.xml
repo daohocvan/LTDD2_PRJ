@@ -20,10 +20,19 @@
 
         </activity>
         <activity android:name=".GiaoDien.DanhSachPCB" />
+
+
         <activity android:name=".GiaoDien.ChiTietPCBActivity" />
         <activity android:name=".GiaoDien.ChiTietGVActivity" />
         <activity android:name=".GiaoDien.DanhSachGV" />
         <activity android:name=".GiaoDien.GiaoVienActivity"></activity>
+
+        <activity android:name=".GiaoDien.ChiTietActivity" />
+        <activity android:name=".GiaoDien.ChiTietThongTinChamBai" />
+        <activity android:name=".GiaoDien.MainActivity" />
+        <activity android:name=".GiaoDien.MainActivityThongTinChamBai" />
+
+
     </application>
 
 </manifest>
