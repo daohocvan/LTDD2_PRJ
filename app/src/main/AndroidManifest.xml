@@ -4,35 +4,38 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/iconapp"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GiaoDien.MainActivity1">
+        <activity
+            android:name=".GiaoDien.Screen"
+            android:theme="@style/AppTheme1"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GiaoDien.PCBActivity">
+        <activity android:name=".GiaoDien.MainActivity1">
 
         </activity>
+        <activity android:name=".GiaoDien.PCBActivity"></activity>
         <activity android:name=".GiaoDien.DanhSachPCB" />
-
-
         <activity android:name=".GiaoDien.ChiTietPCBActivity" />
         <activity android:name=".GiaoDien.ChiTietGVActivity" />
         <activity android:name=".GiaoDien.DanhSachGV" />
-        <activity android:name=".GiaoDien.GiaoVienActivity"></activity>
-
+        <activity android:name=".GiaoDien.GiaoVienActivity" />
         <activity android:name=".GiaoDien.ChiTietActivity" />
         <activity android:name=".GiaoDien.ChiTietThongTinChamBai" />
         <activity android:name=".GiaoDien.MainActivity" />
         <activity android:name=".GiaoDien.MainActivityThongTinChamBai" />
 
-
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

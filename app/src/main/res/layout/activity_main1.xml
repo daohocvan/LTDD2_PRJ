@@ -4,44 +4,141 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/chambai"
+    android:background="@drawable/hinhnen4"
     tools:context="com.example.ktc.GiaoDien.MainActivity1">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/gv"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Giáo Viên" />
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/mh"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Môn Học" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-        <Button
-            android:id="@+id/pcb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Phiếu Chấm Bài" />
+                <Button
+                    android:id="@+id/gv"
+                    android:layout_width="match_parent"
+                    android:layout_height="131dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/giaovien" />
 
-        <Button
-            android:id="@+id/ttcb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+                <TextView
+                    android:id="@+id/giaovien"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/bungee"
+                    android:gravity="center"
+                    android:text="Giáo Viên"
+                    android:textColor="#F5D508"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/mh"
+                    android:layout_width="match_parent"
+                    android:layout_height="131dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/monhoc" />
+
+                <TextView
+                    android:id="@+id/monhoc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/bungee"
+                    android:gravity="center"
+                    android:text="Môn Học"
+                    android:textColor="#F5D508"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="187dp"
             android:layout_weight="1"
-            android:text="Thông Tinh Chấm Bài" />
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="206dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/pcb"
+                    android:layout_width="204dp"
+                    android:layout_height="159dp"
+                    android:background="@drawable/phieucham" />
+
+                <TextView
+                    android:id="@+id/phieucham"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:fontFamily="@font/bungee"
+                    android:gravity="center"
+                    android:text="Phiếu Chấm Bài"
+                    android:textColor="#F5D508"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/ttcb"
+                    android:layout_width="match_parent"
+                    android:layout_height="147dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/thongtin" />
+
+                <TextView
+                    android:id="@+id/thongtin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/bungee"
+                    android:gravity="center"
+                    android:text="Thông Tin Chấm Bài"
+                    android:textColor="#F5D508"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

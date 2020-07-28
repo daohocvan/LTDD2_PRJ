@@ -8,11 +8,13 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.ktc.R;
 
 public class MainActivity1 extends AppCompatActivity {
     Button gv, mh, pcb,ttcb;
+    TextView giaovien, monhoc,chambai,thongtin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +29,7 @@ public class MainActivity1 extends AppCompatActivity {
             public void onClick(View v) {
                 Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move);
                 gv.startAnimation(animation);
+                giaovien.startAnimation(animation);
                 final Thread thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -49,6 +52,7 @@ public class MainActivity1 extends AppCompatActivity {
             public void onClick(View v) {
                 Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade);
                 mh.startAnimation(animation);
+                monhoc.startAnimation(animation);
                 Thread thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -71,6 +75,7 @@ public class MainActivity1 extends AppCompatActivity {
             public void onClick(View v) {
                 Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide);
                 pcb.startAnimation(animation);
+                chambai.startAnimation(animation);
                 Thread thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -92,6 +97,7 @@ public class MainActivity1 extends AppCompatActivity {
             public void onClick(View v) {
                 Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.lefttoright);
                 ttcb.startAnimation(animation);
+                thongtin.startAnimation(animation);
                 Thread thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -118,5 +124,10 @@ public class MainActivity1 extends AppCompatActivity {
         mh = findViewById(R.id.mh);
         pcb = findViewById(R.id.pcb);
         ttcb = findViewById(R.id.ttcb);
+
+        giaovien = findViewById(R.id.giaovien);
+        monhoc = findViewById(R.id.monhoc);
+        chambai = findViewById(R.id.phieucham);
+        thongtin = findViewById(R.id.thongtin);
     }
 }
