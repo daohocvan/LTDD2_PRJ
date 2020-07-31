@@ -1,14 +1,17 @@
 package com.example.ktc.GiaoDien;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ktc.DataBase.DBGiaoVien;
 import com.example.ktc.Model.GiaoVien;
@@ -18,7 +21,7 @@ import java.util.ArrayList;
 
 public class ChiTietGVActivity extends AppCompatActivity {
     EditText txtMaSV, txtHoTen, txtDiaChi;
-    Button btnxoa,btnsua,btnclear;
+    Button btnxoa,btnsua,btnclear, btntheodoi;
     ArrayList<GiaoVien> data_SV = new ArrayList<>();
 
     @Override
@@ -76,6 +79,17 @@ public class ChiTietGVActivity extends AppCompatActivity {
                 txtDiaChi.setText("");
             }
         });
+        btntheodoi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ChiTietGVActivity.this, TheodoithongtinCB.class);
+                Bundle bundle = new Bundle();
+                GiaoVien sinhVien = getGiaoVien();
+                bundle.putString("ma", sinhVien.getMagv());
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
     }
 
     private GiaoVien getGiaoVien() {
@@ -94,7 +108,7 @@ public class ChiTietGVActivity extends AppCompatActivity {
         btnxoa = findViewById(R.id.button);
         btnsua = findViewById(R.id.button2);
         btnclear = findViewById(R.id.button3);
-
+        btntheodoi = findViewById(R.id.theodoi);
 
     }
     @Override

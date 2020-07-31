@@ -17,8 +17,7 @@ public class DBMonHoc {
         dbHelper = new DBHelper(context);
     }
 
-    public void them(MonHoc monHoc)
-    {
+    public void them(MonHoc monHoc) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("mamonhoc", monHoc.getMaMonHoc());
@@ -27,77 +26,74 @@ public class DBMonHoc {
         db.insert("MonHoc", null, values);
     }
 
-    public  void sua(MonHoc monHoc)
-    {
+    public void sua(MonHoc monHoc) {
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        if(!monHoc.getTenMonHoc().equals(""))
-            values.put("tenmonhoc",monHoc.getTenMonHoc());
-        if(!monHoc.getChiPhi().equals(""))
-            values.put("chiphi",monHoc.getChiPhi());
-        db.update("MonHoc",values,"mamonhoc ='" + monHoc.getMaMonHoc()+ "'",null);
+        if (!monHoc.getTenMonHoc().equals(""))
+            values.put("tenmonhoc", monHoc.getTenMonHoc());
+        if (!monHoc.getChiPhi().equals(""))
+            values.put("chiphi", monHoc.getChiPhi());
+        db.update("MonHoc", values, "mamonhoc ='" + monHoc.getMaMonHoc() + "'", null);
     }
 
 
-    public  void xoa(String maMonHoc)
-    {
+    public void xoa(String maMonHoc) {
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        db.delete("MonHoc", "mamonhoc ='"+ maMonHoc +"'", null);
+        db.delete("MonHoc", "mamonhoc ='" + maMonHoc + "'", null);
     }
 
-    public ArrayList<MonHoc> layDuLieu()
-    {
+    public ArrayList<MonHoc> layDuLieu() {
         ArrayList<MonHoc> data = new ArrayList<>();
-        String sql="select * from MonHoc";
-        SQLiteDatabase db= dbHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery(sql,null);
-        cursor.moveToFirst();
-        do {
-            MonHoc monHoc = new MonHoc();
-            monHoc.setMaMonHoc(cursor.getString(0));
-            monHoc.setTenMonHoc(cursor.getString(1));
-            monHoc.setChiPhi(cursor.getString(2));
-            data.add(monHoc);
-        }
-        while (cursor.moveToNext());
-
-        return  data;
-    }
-
-
-    public ArrayList<MonHoc> layDuLieuBangMaMonHoc(String ma)
-    {
-        ArrayList<MonHoc> data = new ArrayList<>();
-        String sql="select * from MonHoc where mamonhoc = '"+ ma + "'";;
-        SQLiteDatabase db= dbHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery(sql,null);
-        cursor.moveToFirst();
-        do {
-            MonHoc monHoc = new MonHoc();
-            monHoc.setMaMonHoc(cursor.getString(0));
-            monHoc.setTenMonHoc(cursor.getString(1));
-            monHoc.setChiPhi(cursor.getString(2));
-            data.add(monHoc);
-        }
-        while (cursor.moveToNext());
-
-        return  data;
-    }
-
-    public ArrayList<MonHoc> layMaMonHoc() {
-        ArrayList<MonHoc> data = new ArrayList<>();
-        String sql = "select mamonhoc from MonHoc";
+        String sql = "select * from MonHoc";
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery(sql, null);
         cursor.moveToFirst();
         do {
             MonHoc monHoc = new MonHoc();
             monHoc.setMaMonHoc(cursor.getString(0));
+            monHoc.setTenMonHoc(cursor.getString(1));
+            monHoc.setChiPhi(cursor.getString(2));
             data.add(monHoc);
         }
         while (cursor.moveToNext());
+
         return data;
+    }
+
+
+    public ArrayList<MonHoc> layDuLieuBangMaMonHoc(String ma) {
+        ArrayList<MonHoc> data = new ArrayList<>();
+        String sql = "select * from MonHoc where mamonhoc = '" + ma + "'";
+        ;
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery(sql, null);
+        cursor.moveToFirst();
+        do {
+            MonHoc monHoc = new MonHoc();
+            monHoc.setMaMonHoc(cursor.getString(0));
+            monHoc.setTenMonHoc(cursor.getString(1));
+            monHoc.setChiPhi(cursor.getString(2));
+            data.add(monHoc);
+        }
+        while (cursor.moveToNext());
+
+        return data;
+    }
+
+    public ArrayList<String> layMaMonHoc() {
+        {
+            ArrayList<String> data = new ArrayList<>();
+            String sql = "select mamonhoc from MonHoc";
+            SQLiteDatabase db = dbHelper.getReadableDatabase();
+            Cursor cursor = db.rawQuery(sql, null);
+            cursor.moveToFirst();
+            do {
+                data.add(cursor.getString(0));
+            }
+            while (cursor.moveToNext());
+            return data;
+        }
     }
 }

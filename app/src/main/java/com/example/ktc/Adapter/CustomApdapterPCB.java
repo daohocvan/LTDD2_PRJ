@@ -93,7 +93,7 @@ public class CustomApdapterPCB extends ArrayAdapter {
 
                 Intent intent = new Intent((Activity) context, ChiTietPCBActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putString("ma", pcb.getSophieu());
+                bundle.putString("ma", pcb.getMagv());
                 intent.putExtras(bundle);
                 ((Activity) context).startActivity(intent);
 

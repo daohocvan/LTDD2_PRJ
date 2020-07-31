@@ -14,10 +14,14 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ktc.Adapter.CustomApdapter;
+import com.example.ktc.Adapter.CustomApdapterMonHoc;
 import com.example.ktc.DataBase.DBGiaoVien;
+import com.example.ktc.DataBase.DBMonHoc;
 import com.example.ktc.Model.GiaoVien;
 import com.example.ktc.R;
 
@@ -38,10 +42,14 @@ public class GiaoVienActivity extends AppCompatActivity {
         setContentView(R.layout.activity_giaovien);
         setControl();
         setEvent();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     private void setEvent() {
-        CapnhapDL();
+        apdapter = new CustomApdapter(this,R.layout.listview_item1,data_SV);
+        lvDanhSach.setAdapter(apdapter);;
+        HienThiDL();
         btnThem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,10 +85,18 @@ public class GiaoVienActivity extends AppCompatActivity {
     }
     private  void HienThiDL()
     {
-        DBGiaoVien dbSinhVien = new DBGiaoVien(this);
-        data_SV = dbSinhVien.LayDL();
-        apdapter = new CustomApdapter(this,R.layout.listview_item1,data_SV);
-        lvDanhSach.setAdapter(apdapter);
+
+        try{
+            DBGiaoVien dbSinhVien = new DBGiaoVien(this);
+            data_SV = dbSinhVien.LayDL();
+            apdapter = new CustomApdapter(this,R.layout.listview_item1,data_SV);
+            lvDanhSach.setAdapter(apdapter);
+        }
+        catch (Exception ex){
+            lvDanhSach.setVisibility(View.GONE);
+            Toast.makeText(this, "Không có dữ liệu", Toast.LENGTH_SHORT).show();
+
+        }
     }
     private GiaoVien getGiaoVien() {
         GiaoVien GiaoVien = new GiaoVien();
@@ -146,6 +162,9 @@ public class GiaoVienActivity extends AppCompatActivity {
                 AlertDialog dialog = builder.create();
                 dialog.show();
                 break;
+            case android.R.id.home:
+                onBackPressed();
+                return true;
         }
 
         return super.onOptionsItemSelected(item);

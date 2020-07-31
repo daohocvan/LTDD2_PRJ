@@ -39,7 +39,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/them"
+            android:background="@drawable/btn"
             android:drawableLeft="@drawable/ic_add_black_24dp"
             android:text="@string/them"
             android:textColorLink="#CDDC39" />
@@ -50,7 +50,7 @@
             android:id="@+id/btnClear"
             style="@style/btn"
             android:layout_marginRight="10dp"
-            android:background="@drawable/them"
+            android:background="@drawable/btn"
             android:drawableLeft="@drawable/ic_clear_alll_black_24dp"
             android:text="@string/clear"
             android:textColorLink="#CDDC39" />

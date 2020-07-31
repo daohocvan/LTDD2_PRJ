@@ -3,6 +3,8 @@ package com.example.ktc.GiaoDien;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -12,45 +14,67 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ktc.Adapter.CustomApdapterPCB;
+import com.example.ktc.DataBase.DBGiaoVien;
+import com.example.ktc.DataBase.DBHelper;
 import com.example.ktc.DataBase.DBPCB;
+import com.example.ktc.Model.GiaoVien;
 import com.example.ktc.Model.PCB;
 import com.example.ktc.R;
 
 import java.util.ArrayList;
 
 public class PCBActivity extends AppCompatActivity {
-    EditText txtma,txthoten,txtsdt;
-
-    Button btnThem, btnXoa, btnSua, btnClear;
-    ArrayList<String> data_khoa = new ArrayList<>();
-    ArrayAdapter adapter_khoa;
+    EditText txtma,txthoten;
+    Spinner txtsdt;
+    Button btnThem, btnClear;
+    ArrayAdapter adapter_MGV;
     ArrayList<PCB> data_SV = new ArrayList<>();
+    ArrayList<String> data_mgv = new ArrayList<>();
     CustomApdapterPCB apdapter ;
     ListView lvDanhSach;
+    ArrayList<GiaoVien> data = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pcb);
         setControl();
         setEvent();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     private void setEvent() {
         CapnhapDL();
+        try {
+            DBGiaoVien dbSinhVien = new DBGiaoVien(this);
+            data_mgv = dbSinhVien.LayDLMGV();
+            adapter_MGV = new ArrayAdapter(this, android.R.layout.simple_spinner_item, data_mgv);
+            txtsdt.setAdapter(adapter_MGV);
+        }catch (Exception ex){
+            lvDanhSach.setVisibility(View.GONE);
+            Toast.makeText(this, "Cần Thêm Mã Giáo Viên", Toast.LENGTH_SHORT).show();
+        }
         btnThem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DBPCB dbPCB = new DBPCB(getApplicationContext());
-                PCB PCB = getPCB();
-                dbPCB.Them(PCB);
-                HienThiDL();
-                CapnhapDL();
+                try {
+                    DBPCB dbPCB = new DBPCB(getApplicationContext());
+                    PCB PCB = getPCB();
+                    dbPCB.Them(PCB);
+                    CapnhapDL();
+                }catch (Exception ex){
 
+                    lvDanhSach.setVisibility(View.GONE);
+                    Toast.makeText(PCBActivity.this, "Cần Thêm Mã Giáo Viên", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
@@ -60,7 +84,6 @@ public class PCBActivity extends AppCompatActivity {
             public void onClick(View v) {
                 txtma.setText("");
                 txthoten.setText("");
-                txtsdt.setText("");
             }
         });
     }
@@ -90,7 +113,7 @@ public class PCBActivity extends AppCompatActivity {
         PCB PCB = new PCB();
         PCB.setSophieu(txtma.getText().toString());
         PCB.setNgaygiaobai(txthoten.getText().toString());
-        PCB.setMagv(txtsdt.getText().toString());
+        PCB.setMagv(txtsdt.getSelectedItem().toString());
         return PCB;
     }
 
@@ -150,8 +173,12 @@ public class PCBActivity extends AppCompatActivity {
                 AlertDialog dialog = builder.create();
                 dialog.show();
                 break;
+            case android.R.id.home:
+                onBackPressed();
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
+
 }

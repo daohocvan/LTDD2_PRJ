@@ -1,6 +1,5 @@
 package com.example.ktc.GiaoDien;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -15,7 +14,15 @@ import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.ktc.Adapter.CustomApdapterPCB;
 import com.example.ktc.Adapter.CustomApdapterTTChamBai;
+import com.example.ktc.DataBase.DBGiaoVien;
+import com.example.ktc.DataBase.DBMonHoc;
+import com.example.ktc.DataBase.DBPCB;
 import com.example.ktc.DataBase.DBTTChamBai;
 import com.example.ktc.Model.TTChamBai;
 import com.example.ktc.R;
@@ -43,20 +50,28 @@ public class MainActivityThongTinChamBai extends AppCompatActivity {
         setContentView(R.layout.activity_main_thong_tin_cham_bai);
         setControl();
         setEvent();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     private void setEvent() {
-        data_SoPhieu.add("01");
-        data_SoPhieu.add("02");
-        data_SoPhieu.add("03");
-        adapter_SoPhieu = new ArrayAdapter(this, android.R.layout.simple_spinner_item, data_SoPhieu);
-        spSoPhieu.setAdapter(adapter_SoPhieu);
-        data_MaMonHoc.add("AR1");
-        data_MaMonHoc.add("AR2");
-        data_MaMonHoc.add("AR3");
-        adapter_MaMonHoc = new ArrayAdapter(this, android.R.layout.simple_spinner_item, data_MaMonHoc);
-        spMaMonHoc.setAdapter(adapter_MaMonHoc);
-        hienThiDL();
+
+        try {
+            DBPCB dbpcb = new DBPCB(this);
+            data_SoPhieu = dbpcb.laySoPhieu();
+            adapter_SoPhieu = new ArrayAdapter(this, android.R.layout.simple_spinner_item, data_SoPhieu);
+            spSoPhieu.setAdapter(adapter_SoPhieu);
+            DBMonHoc dbMonHoc = new DBMonHoc(this);
+            data_MaMonHoc = dbMonHoc.layMaMonHoc();
+
+            adapter_MaMonHoc = new ArrayAdapter(this, android.R.layout.simple_spinner_item, data_MaMonHoc);
+            spMaMonHoc.setAdapter(adapter_MaMonHoc);
+            hienThiDL();
+        }catch (Exception ex){
+            lvDanhSach_TTChamBai.setVisibility(View.GONE);
+            Toast.makeText(this, "Cần thêm số phiếu", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Cần thêm mã môn học", Toast.LENGTH_SHORT).show();
+        }
         btnThem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,5 +154,15 @@ public class MainActivityThongTinChamBai extends AppCompatActivity {
             }
         });
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -84,4 +84,18 @@ public class DBGiaoVien {
 
         return  data;
     }
+    public ArrayList<String> LayDLMGV()
+    {
+        ArrayList<String> data = new ArrayList<>();
+        String sql="select * from GiaoVien";
+        SQLiteDatabase db= dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery(sql,null);
+        cursor.moveToFirst();
+        do {
+            data.add(cursor.getString(0));
+        }
+        while (cursor.moveToNext());
+
+        return  data;
+    }
 }

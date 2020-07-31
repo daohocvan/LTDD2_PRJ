@@ -94,7 +94,7 @@ public class CustomApdapter extends ArrayAdapter {
 
                 Intent intent = new Intent((Activity) context, ChiTietGVActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putString("ma", GiaoVien.getMagv());
+                bundle.putString("ma",GiaoVien.getMagv());
                 intent.putExtras(bundle);
                 ((Activity) context).startActivity(intent);
 

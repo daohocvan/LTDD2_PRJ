@@ -1,15 +1,21 @@
 package com.example.ktc.GiaoDien;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.ktc.DataBase.DBGiaoVien;
 import com.example.ktc.DataBase.DBPCB;
 import com.example.ktc.Model.PCB;
 import com.example.ktc.R;
@@ -17,9 +23,13 @@ import com.example.ktc.R;
 import java.util.ArrayList;
 
 public class ChiTietPCBActivity extends AppCompatActivity {
-    EditText txtMaSV, txtHoTen, txtDiaChi;
+    EditText txtMaSV, txtHoTen;
+    TextView textView;
+    Spinner  txtDiaChi;
     Button btnxoa,btnsua,btnclear;
     ArrayList<PCB> data_SV = new ArrayList<>();
+    ArrayList<String> data_mgv = new ArrayList<>();
+    ArrayAdapter adapter_MGV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,23 +43,26 @@ public class ChiTietPCBActivity extends AppCompatActivity {
     }
 
     private void setEvent() {
+        DBGiaoVien dbSinhVien = new DBGiaoVien(this);
+        data_mgv = dbSinhVien.LayDLMGV();
+        adapter_MGV = new ArrayAdapter(this, android.R.layout.simple_spinner_item, data_mgv);
+        txtDiaChi.setAdapter(adapter_MGV);
         String ma = getIntent().getExtras().getString("ma");
         DBPCB dbPCB = new DBPCB(this);
         data_SV = dbPCB.LayDL(ma);
         txtMaSV.setText(data_SV.get(0).getSophieu());
         txtHoTen.setText(data_SV.get(0).getNgaygiaobai());
-        txtDiaChi.setText(data_SV.get(0).getMagv());
-
+        textView.setText(data_SV.get(0).getMagv());
         btnxoa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DBPCB dbpcb = new DBPCB(getApplicationContext());
-                PCB pcb = getGiaoVien();
+                PCB pcb = getGiaoVienXoa();
                 dbpcb.Xoa(pcb);
 
                 txtMaSV.setText("");
                 txtHoTen.setText("");
-                txtDiaChi.setText("");
+                txtDiaChi.getSelectedItem();
 
                 Intent intent = new Intent(ChiTietPCBActivity.this, PCBActivity.class);
                 startActivity(intent);
@@ -62,9 +75,6 @@ public class ChiTietPCBActivity extends AppCompatActivity {
                 DBPCB dbpcb = new DBPCB(getApplicationContext());
                 PCB pcb = getGiaoVien();
                 dbpcb.Sua(pcb);
-                txtMaSV.setText("");
-                txtHoTen.setText("");
-                txtDiaChi.setText("");
                 Intent intent = new Intent(ChiTietPCBActivity.this, PCBActivity.class);
                 startActivity(intent);
             }
@@ -73,16 +83,22 @@ public class ChiTietPCBActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 txtHoTen.setText("");
-                txtDiaChi.setText("");
+                textView.setText("");
             }
         });
     }
-
+    private PCB getGiaoVienXoa() {
+        PCB pcb = new PCB();
+        pcb.setSophieu(txtMaSV.getText().toString());
+        pcb.setNgaygiaobai(txtHoTen.getText().toString());
+        pcb.setMagv(textView.getText().toString());
+        return pcb;
+    }
     private PCB getGiaoVien() {
         PCB pcb = new PCB();
         pcb.setSophieu(txtMaSV.getText().toString());
         pcb.setNgaygiaobai(txtHoTen.getText().toString());
-        pcb.setMagv(txtDiaChi.getText().toString());
+        pcb.setMagv(txtDiaChi.getSelectedItem().toString());
         return pcb;
     }
 
@@ -90,7 +106,7 @@ public class ChiTietPCBActivity extends AppCompatActivity {
         txtMaSV = findViewById(R.id.txtMa);
         txtHoTen = findViewById(R.id.txtHoTen);
         txtDiaChi = findViewById(R.id.txtDiaChi);
-
+        textView = findViewById(R.id.textView);
         btnxoa = findViewById(R.id.button);
         btnsua = findViewById(R.id.button2);
         btnclear = findViewById(R.id.button3);

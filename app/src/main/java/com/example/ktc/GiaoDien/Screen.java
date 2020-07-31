@@ -1,6 +1,5 @@
 package com.example.ktc.GiaoDien;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
@@ -11,11 +10,13 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.ktc.R;
 
 public class Screen extends AppCompatActivity {
 
-    private  static  int SPLASH_SCREEN = 4000;
+    private  static  int SPLASH_SCREEN = 3000;
 
     ImageView bieutuong,ani;
     @Override
