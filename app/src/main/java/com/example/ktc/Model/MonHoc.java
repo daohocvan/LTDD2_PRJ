@@ -28,4 +28,13 @@ public class MonHoc {
     public void setChiPhi(String chiPhi) {
         this.chiPhi = chiPhi;
     }
+
+    @Override
+    public String toString() {
+        return "MonHoc{" +
+                "maMonHoc='" + maMonHoc + '\'' +
+                ", tenMonHoc='" + tenMonHoc + '\'' +
+                ", chiPhi='" + chiPhi + '\'' +
+                '}';
+    }
 }

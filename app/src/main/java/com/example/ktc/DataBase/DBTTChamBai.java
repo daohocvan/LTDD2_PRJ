@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.ktc.Model.MonHoc;
+import com.example.ktc.Model.PCB;
 import com.example.ktc.Model.TTChamBai;
 
 import java.util.ArrayList;
@@ -83,4 +85,42 @@ public class DBTTChamBai {
 
         return  data;
     }
+    public ArrayList<TTChamBai> layDuLieuBangSoPhieu(String soPhieu)
+    {
+        ArrayList<TTChamBai> data = new ArrayList<>();
+        String sql="select mamonhoc, sobai from TTChamBai where sophieu = '" + soPhieu + "'";
+        SQLiteDatabase db= dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery(sql,null);
+        cursor.moveToFirst();
+        do {
+            TTChamBai ttChamBai = new TTChamBai();
+            ttChamBai.setMaMonHoc(cursor.getString(0));
+            ttChamBai.setSoBai(cursor.getString(1));
+            data.add(ttChamBai);
+        }
+        while (cursor.moveToNext());
+
+        return  data;
+    }
+    public ArrayList<TTChamBai> lay(String ma)
+    {
+        ArrayList<TTChamBai> data = new ArrayList<>();
+        String sql="SELECT TTChamBai.sophieu, TTChamBai.mamonhoc, TTChamBai.sobai from TTChamBai INNER JOIN PhieuChamBai " +
+                "ON TTChamBai.sophieu = PhieuChamBai.SoPhieu where PhieuChamBai.MaGV = '"+ma+"' ORDER BY TTChamBai.sophieu ASC";
+        SQLiteDatabase db= dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery(sql,null);
+        cursor.moveToFirst();
+        do {
+            TTChamBai ttChamBai = new TTChamBai();
+            ttChamBai.setSoPhieu(cursor.getString(0));
+            ttChamBai.setMaMonHoc(cursor.getString(1));
+            ttChamBai.setSoBai(cursor.getString(2));
+            data.add(ttChamBai);
+        }
+        while (cursor.moveToNext());
+        return  data;
+    }
+
+
+
 }

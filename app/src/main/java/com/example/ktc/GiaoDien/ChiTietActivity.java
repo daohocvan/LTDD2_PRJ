@@ -5,14 +5,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.ktc.Adapter.CustomAdapterGiaoVienDangCham;
+import com.example.ktc.DataBase.DBGiaoVien;
 import com.example.ktc.DataBase.DBMonHoc;
+import com.example.ktc.Model.GiaoVien;
 import com.example.ktc.Model.MonHoc;
 import com.example.ktc.R;
 
@@ -23,7 +28,10 @@ public class ChiTietActivity extends AppCompatActivity {
     EditText txtMaMonHoc, txtTenMonHoc, txtChiPhi;
     ArrayList<MonHoc> data_MonHoc = new ArrayList<>();
     Button btnXoa, btnSua, btnClear;
-
+    ListView lvGiaoVien;
+    ArrayList<GiaoVien> data_GiaoVien = new ArrayList<>();
+    CustomAdapterGiaoVienDangCham adapter_GiaoVien;
+    DBGiaoVien dbGiaoVien;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,12 +43,13 @@ public class ChiTietActivity extends AppCompatActivity {
 
     }
     private void setEvent() {
+        dbGiaoVien = new DBGiaoVien(this);
         final String ma = getIntent().getExtras().getString("ma");
         final DBMonHoc dbMonHoc = new DBMonHoc(this);
         data_MonHoc = dbMonHoc.layDuLieuBangMaMonHoc(ma);
-        txtMaMonHoc.setText(data_MonHoc.get(0).getMaMonHoc());
-        txtTenMonHoc.setText(data_MonHoc.get(0).getTenMonHoc());
-        txtChiPhi.setText(data_MonHoc.get(0).getChiPhi());
+        txtMaMonHoc.setText("Mã môn học: " + ma);
+        txtTenMonHoc.setText("Tên môn học: " + data_MonHoc.get(0).getTenMonHoc());
+        txtChiPhi.setText("Chi phí: " + data_MonHoc.get(0).getChiPhi());
         btnXoa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,6 +85,14 @@ public class ChiTietActivity extends AppCompatActivity {
                 txtChiPhi.setText("");
             }
         });
+        try{
+            adapter_GiaoVien = new CustomAdapterGiaoVienDangCham(this, R.layout.listview_giaoviendangcham, dbGiaoVien.layTenGiaoVien(ma));
+            lvGiaoVien.setAdapter(adapter_GiaoVien);
+        }
+        catch(Exception ex){
+            Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     private void setConTrol() {
@@ -85,6 +102,7 @@ public class ChiTietActivity extends AppCompatActivity {
         btnXoa = findViewById(R.id.btnXoa);
         btnSua = findViewById(R.id.btnSua);
         btnClear = findViewById(R.id.btnClear);
+        lvGiaoVien = findViewById(R.id.lvTenGiaoVien);
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

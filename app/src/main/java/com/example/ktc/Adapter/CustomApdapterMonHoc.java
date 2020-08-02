@@ -53,9 +53,9 @@ public class CustomApdapterMonHoc extends ArrayAdapter {
         if (view == null) {
             holder = new Holder();
             view = LayoutInflater.from(context).inflate(resource, null);
-            holder.imgHinh = view.findViewById(R.id.imgHinh);
+            holder.imgHinh = view.findViewById(R.id.imgSach);
             holder.imgDetail = view.findViewById(R.id.imgDetail);
-            holder.tvTenMonHoc = view.findViewById(R.id.tvTenMonHoc);
+            holder.tvTenMonHoc = view.findViewById(R.id.tvMaMonHoc);
             holder.tvChiPhi = view.findViewById(R.id.tvChiPhi);
             view.setTag(holder);
         } else
@@ -68,8 +68,8 @@ public class CustomApdapterMonHoc extends ArrayAdapter {
         if(monHoc.getMaMonHoc().equals("AR2")){
             holder.imgHinh.setImageResource(R.drawable.android);
         }
-        if(monHoc.getMaMonHoc().equals("AR3")){
-            holder.imgHinh.setImageResource(R.drawable.sach);
+        if(monHoc.getMaMonHoc().equals("JAVA1")){
+            holder.imgHinh.setImageResource(R.drawable.java);
         }
         holder.tvTenMonHoc.setText("Tên môn học: " + monHoc.getTenMonHoc());
 //        int chiPhi = Integer.parseInt(monHoc.getChiPhi());

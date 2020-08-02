@@ -85,11 +85,17 @@ public class ChiTietGVActivity extends AppCompatActivity {
                 Intent intent = new Intent(ChiTietGVActivity.this, TheodoithongtinCB.class);
                 Bundle bundle = new Bundle();
                 GiaoVien sinhVien = getGiaoVien();
-                bundle.putString("ma", sinhVien.getMagv());
+                bundle.putString("tengv", sinhVien.getTengv());
+                Bundle bundle2 = new Bundle();
+                bundle2.putString("magv", sinhVien.getMagv());
+
                 intent.putExtras(bundle);
+
+                intent.putExtras(bundle2);
                 startActivity(intent);
             }
         });
+
     }
 
     private GiaoVien getGiaoVien() {

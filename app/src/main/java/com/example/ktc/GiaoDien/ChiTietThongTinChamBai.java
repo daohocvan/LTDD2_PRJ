@@ -64,9 +64,9 @@ public class ChiTietThongTinChamBai extends AppCompatActivity {
                 if(txtSoBai.getText().toString().equals("")){
                     txtSoBai.setError("Không được để trống");
                 }else{
-                    ttChamBai.setSoPhieu(soPhieu);
-                    ttChamBai.setMaMonHoc(ma);
-                    ttChamBai.setSoBai(txtSoBai.getText().toString());
+                    ttChamBai.setSoPhieu("Số phiếu: " + soPhieu);
+                    ttChamBai.setMaMonHoc("Mã môn học: " + ma);
+                    ttChamBai.setSoBai("Số bài: " + txtSoBai.getText().toString());
                     dbttChamBai.sua(ttChamBai);
                     Toast.makeText(getApplicationContext(), "Sửa thành công", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(), MainActivityThongTinChamBai.class);

@@ -20,10 +20,10 @@
                 android:id="@+id/textView2"
                 android:layout_width="189dp"
                 android:layout_height="wrap_content"
-                android:text="Các Phiếu Theo Dõi Của GV:" />
+                android:text="Các phiếu chấm bài của GV:" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/tvHoTenGV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -31,8 +31,9 @@
         </LinearLayout>
 
         <ListView
+            android:id="@+id/lvTenGiaoVien"
             android:layout_width="match_parent"
-            android:layout_height="200dp" >
+            android:layout_height="200dp">
 
         </ListView>
 
@@ -45,10 +46,10 @@
                 android:id="@+id/textView6"
                 android:layout_width="146dp"
                 android:layout_height="wrap_content"
-                android:text="Tổng số lượng phiếu" />
+                android:text="Tổng số lượng phiếu: " />
 
             <TextView
-                android:id="@+id/textView7"
+                android:id="@+id/tvTongPhieu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -60,9 +61,15 @@
             android:id="@+id/textView8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Thông tin chấm bài" />
+            android:text="Thông tin chấm bài:" />
 
         <ListView
+            android:id="@+id/lvThongTinChamBai"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+        <ListView
+            android:id="@+id/lvThongTin"
             android:layout_width="match_parent"
             android:layout_height="200dp" />
 
@@ -77,39 +84,20 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView9"
+                    android:id="@+id/tvTongMonCham"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="TextView" />
 
                 <TextView
-                    android:id="@+id/textView10"
+                    android:id="@+id/tvTongTien"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="TextView" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textView11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="TextView" />
-
-                <TextView
-                    android:id="@+id/textView12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="TextView" />
-            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout

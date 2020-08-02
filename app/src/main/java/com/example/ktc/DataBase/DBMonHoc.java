@@ -65,16 +65,15 @@ public class DBMonHoc {
 
     public ArrayList<MonHoc> layDuLieuBangMaMonHoc(String ma) {
         ArrayList<MonHoc> data = new ArrayList<>();
-        String sql = "select * from MonHoc where mamonhoc = '" + ma + "'";
+        String sql = "select tenmonhoc, chiphi from MonHoc where mamonhoc = '" + ma + "'";
         ;
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery(sql, null);
         cursor.moveToFirst();
         do {
             MonHoc monHoc = new MonHoc();
-            monHoc.setMaMonHoc(cursor.getString(0));
-            monHoc.setTenMonHoc(cursor.getString(1));
-            monHoc.setChiPhi(cursor.getString(2));
+            monHoc.setTenMonHoc(cursor.getString(0));
+            monHoc.setChiPhi(cursor.getString(1));
             data.add(monHoc);
         }
         while (cursor.moveToNext());
@@ -95,5 +94,24 @@ public class DBMonHoc {
             while (cursor.moveToNext());
             return data;
         }
+    }
+
+    public ArrayList<MonHoc> lay(String ma) {
+        ArrayList<MonHoc> data = new ArrayList<>();
+        String sql = "SELECT MonHoc.mamonhoc, MonHoc.tenmonhoc, MonHoc.chiphi from TTChamBai INNER JOIN PhieuChamBai ON TTChamBai.sophieu = PhieuChamBai.SoPhieu " +
+                "INNER JOIN MonHoc ON TTChamBai.mamonhoc = MonHoc.mamonhoc  where PhieuChamBai.MaGV = '" + ma + "' ORDER BY MonHoc.tenmonhoc ASC";
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery(sql, null);
+        cursor.moveToFirst();
+        do {
+            MonHoc monHoc = new MonHoc();
+            monHoc.setMaMonHoc(cursor.getString(0));
+            monHoc.setTenMonHoc(cursor.getString(1));
+            monHoc.setChiPhi(cursor.getString(2));
+            data.add(monHoc);
+        }
+        while (cursor.moveToNext());
+
+        return data;
     }
 }

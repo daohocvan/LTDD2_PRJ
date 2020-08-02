@@ -1,5 +1,7 @@
 package com.example.ktc.Model;
 
+import androidx.annotation.NonNull;
+
 public class TTChamBai {
     String soPhieu, soBai;
     String maMonHoc;
@@ -26,5 +28,14 @@ public class TTChamBai {
 
     public void setMaMonHoc(String maMonHoc) {
         this.maMonHoc = maMonHoc;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "TTChamBai{" + soPhieu + '\'' +
+                ", soBai=" + soBai +
+                ", maMonHoc='" + maMonHoc + '\'' +
+                '}';
     }
 }

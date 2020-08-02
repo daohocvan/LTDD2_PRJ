@@ -60,11 +60,12 @@ public class MainActivityThongTinChamBai extends AppCompatActivity {
             DBPCB dbpcb = new DBPCB(this);
             data_SoPhieu = dbpcb.laySoPhieu();
             adapter_SoPhieu = new ArrayAdapter(this, android.R.layout.simple_spinner_item, data_SoPhieu);
+            adapter_SoPhieu.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spSoPhieu.setAdapter(adapter_SoPhieu);
             DBMonHoc dbMonHoc = new DBMonHoc(this);
             data_MaMonHoc = dbMonHoc.layMaMonHoc();
-
             adapter_MaMonHoc = new ArrayAdapter(this, android.R.layout.simple_spinner_item, data_MaMonHoc);
+            adapter_MaMonHoc.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spMaMonHoc.setAdapter(adapter_MaMonHoc);
             hienThiDL();
         }catch (Exception ex){

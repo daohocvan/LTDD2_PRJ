@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.ktc.Model.GiaoVien;
+import com.example.ktc.Model.MonHoc;
 
 import java.util.ArrayList;
 
@@ -28,13 +29,12 @@ public class DBGiaoVien {
 
     public  void Sua(GiaoVien GiaoVien)
     {
-
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("MaGV",GiaoVien.getMagv());
         values.put("TenGV",GiaoVien.getTengv());
         values.put("SDT",GiaoVien.getSdt());
-        db.update("GiaoVien",values,"MaGV ='"+GiaoVien.getMagv() +"'",null);
+        db.update("GiaoVien",values,"MaGV ='"+ GiaoVien.getMagv() +"'",null);
     }
 
 
@@ -69,7 +69,7 @@ public class DBGiaoVien {
     public ArrayList<GiaoVien> LayDL(String ma)
     {
         ArrayList<GiaoVien> data = new ArrayList<>();
-        String sql="select * from GiaoVien where MaGV = '"+ma+"'";
+        String sql="select * from GiaoVien where MaGV = '" + ma +"'";
         SQLiteDatabase db= dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery(sql,null);
         cursor.moveToFirst();
@@ -97,5 +97,22 @@ public class DBGiaoVien {
         while (cursor.moveToNext());
 
         return  data;
+    }
+    public ArrayList<GiaoVien> layTenGiaoVien(String ma) {
+        ArrayList<GiaoVien> data = new ArrayList<>();
+        String sql = "select DISTINCT GiaoVien.MaGV, GiaoVien.TenGV, GiaoVien.SDT from MonHoc INNER JOIN TTChamBai ON MonHoc.mamonhoc = TTChamBai.mamonhoc  INNER JOIN PhieuChamBai\n" +
+                "    ON TTChamBai.sophieu = PhieuChamBai.SoPhieu INNER JOIN GiaoVien ON PhieuChamBai.MaGV = GiaoVien.MaGV WHERE MonHoc.mamonhoc = '" + ma + "' ORDER BY MonHoc.tenmonhoc ASC";
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery(sql, null);
+        cursor.moveToFirst();
+        do {
+            GiaoVien giaoVien = new GiaoVien();
+            giaoVien.setMagv(cursor.getString(0));
+            giaoVien.setTengv(cursor.getString(1));
+            giaoVien.setSdt(cursor.getString(2));
+            data.add(giaoVien);
+        }
+        while (cursor.moveToNext());
+        return data;
     }
 }

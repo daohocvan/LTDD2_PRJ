@@ -20,8 +20,10 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ktc.Adapter.CustomApdapterMonHoc;
+import com.example.ktc.Adapter.CustomSpMaMonHoc;
 import com.example.ktc.DataBase.DBMonHoc;
 import com.example.ktc.Model.MonHoc;
+import com.example.ktc.Model.SpMaMonHoc;
 import com.example.ktc.R;
 
 import java.util.ArrayList;
@@ -35,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
     int index = -1;
 
     CustomApdapterMonHoc apdapter;
+    ArrayList<SpMaMonHoc> array_MaMonHoc = new ArrayList<>();
     ArrayList<MonHoc> data_MonHoc = new ArrayList<>();
-    ArrayAdapter adapter_MaMonHoc;
     ArrayList<String> data_MaMonHoc = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +51,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setEvent() {
-        data_MaMonHoc.add("AR1");
-        data_MaMonHoc.add("AR2");
-        data_MaMonHoc.add("AR3");
-        adapter_MaMonHoc = new ArrayAdapter(this, android.R.layout.simple_spinner_item, data_MaMonHoc);
-        spMaMonHoc.setAdapter(adapter_MaMonHoc);
+        array_MaMonHoc.add(new SpMaMonHoc("AR1", R.drawable.android2));
+        array_MaMonHoc.add(new SpMaMonHoc("AR2", R.drawable.android));
+        array_MaMonHoc.add(new SpMaMonHoc("JAVA1", R.drawable.java));
+        CustomSpMaMonHoc adapter_SpMaMonHoc= new CustomSpMaMonHoc(this, R.layout.sp_mamonhoc, array_MaMonHoc);
+        spMaMonHoc.setAdapter(adapter_SpMaMonHoc);
+
         hienThiDL();
       btnThem.setOnClickListener(new View.OnClickListener() {
           @Override
@@ -71,20 +74,6 @@ public class MainActivity extends AppCompatActivity {
               txtChiPhi.setText("");
           }
       });
-      lvDanhSachMonHoc.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-          @Override
-          public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-              DBMonHoc dbMonHoc = new DBMonHoc(getApplicationContext());
-              data_MonHoc = dbMonHoc.layDuLieu();
-              MonHoc monHoc = data_MonHoc.get(position);
-              spMaMonHoc.setSelection(data_MaMonHoc.indexOf(monHoc.getMaMonHoc()));
-              txtTenMonHoc.setText(monHoc.getTenMonHoc());
-              txtChiPhi.setText(monHoc.getChiPhi());
-              index = position;
-          }
-      });
-
-
     }
 
     public  void hienThiDL()
@@ -111,8 +100,10 @@ public class MainActivity extends AppCompatActivity {
             txtChiPhi.setError("Không để trống");
         }
         if(!txtTenMonHoc.getText().toString().equals("") && !txtChiPhi.getText().toString().equals("")){
-            MonHoc monHoc = new MonHoc();
-            monHoc.setMaMonHoc(spMaMonHoc.getSelectedItem().toString());
+            final MonHoc monHoc = new MonHoc();
+
+            String maMonhoc = array_MaMonHoc.get(spMaMonHoc.getSelectedItemPosition()).maMonhoc;
+            monHoc.setMaMonHoc(maMonhoc);
             monHoc.setTenMonHoc(txtTenMonHoc.getText().toString());
             monHoc.setChiPhi(txtChiPhi.getText().toString());
             dbMonHoc.them(monHoc);
@@ -120,6 +111,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public SpMaMonHoc getItem(int position){
+
+        return array_MaMonHoc.get(position);
+    }
 
     private void setConTrol() {
 

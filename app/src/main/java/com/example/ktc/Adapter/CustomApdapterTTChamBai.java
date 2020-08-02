@@ -53,7 +53,7 @@ public class CustomApdapterTTChamBai extends ArrayAdapter {
         if (view == null) {
             holder = new Holder();
             view = LayoutInflater.from(context).inflate(resource, null);
-            holder.imgHinh = view.findViewById(R.id.imgHinh);
+            holder.imgHinh = view.findViewById(R.id.imgSach);
             holder.imgDetail = view.findViewById(R.id.imgDetail);
             holder.tvSoPhieu = view.findViewById(R.id.tvSoPhieu);
             holder.tvSoBai = view.findViewById(R.id.tvSoBai);

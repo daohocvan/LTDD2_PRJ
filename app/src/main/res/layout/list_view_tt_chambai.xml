@@ -6,7 +6,7 @@
     <ImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:id="@+id/imgHinh"
+        android:id="@+id/imgSach"
         android:src="@drawable/sach"
         />
     <LinearLayout

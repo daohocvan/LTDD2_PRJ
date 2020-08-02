@@ -31,7 +31,7 @@ public class PCB {
     String magv;
     @Override
     public String toString() {
-        return "GiaoVien{" +sophieu + '\'' +
+        return "PCB{" +sophieu + '\'' +
                 ", ngaygiaobai=" + ngaygiaobai +
                 ", magv='" + magv + '\'' +
                 '}';

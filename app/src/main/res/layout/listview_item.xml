@@ -6,7 +6,7 @@
     <ImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:id="@+id/imgHinh"
+        android:id="@+id/imgSach"
         android:src="@drawable/sach"
         />
     <LinearLayout
@@ -20,7 +20,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tvTenMonHoc"
+            android:id="@+id/tvMaMonHoc"
             android:text="AAA"
             />
         <TextView

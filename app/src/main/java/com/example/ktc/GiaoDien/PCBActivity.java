@@ -57,6 +57,7 @@ public class PCBActivity extends AppCompatActivity {
             DBGiaoVien dbSinhVien = new DBGiaoVien(this);
             data_mgv = dbSinhVien.LayDLMGV();
             adapter_MGV = new ArrayAdapter(this, android.R.layout.simple_spinner_item, data_mgv);
+            adapter_MGV.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             txtsdt.setAdapter(adapter_MGV);
         }catch (Exception ex){
             lvDanhSach.setVisibility(View.GONE);

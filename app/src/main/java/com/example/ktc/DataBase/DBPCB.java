@@ -42,7 +42,8 @@ public class DBPCB {
     {
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        String sql ="Delete from PhieuChamBai where SoPhieu= '"+PCB.getSophieu()+"' AND NgayGiaoBai='"+PCB.getNgaygiaobai()+"' AND MaGV='"+PCB.getMagv()+"'";
+        String sql ="Delete from PhieuChamBai where SoPhieu= '"+PCB.getSophieu()+"' AND NgayGiaoBai='"
+                +PCB.getNgaygiaobai()+"' AND MaGV='"+PCB.getMagv()+"'";
         db.execSQL(sql);
 
     }
@@ -69,7 +70,7 @@ public class DBPCB {
     public ArrayList<PCB> LayDL(String ma)
     {
         ArrayList<PCB> data = new ArrayList<>();
-        String sql="select * from PhieuChamBai where MaGV = '"+ma+"'";
+        String sql="select SoPhieu, NgayGiaoBai from PhieuChamBai where MaGV = '"+ma+"'";
         SQLiteDatabase db= dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery(sql,null);
         cursor.moveToFirst();
@@ -77,11 +78,9 @@ public class DBPCB {
             PCB PCB = new PCB();
             PCB.setSophieu(cursor.getString(0));
             PCB.setNgaygiaobai(cursor.getString(1));
-            PCB.setMagv(cursor.getString(2));
             data.add(PCB);
         }
         while (cursor.moveToNext());
-
         return  data;
     }
     public ArrayList<String> laySoPhieu() {
@@ -98,4 +97,5 @@ public class DBPCB {
             return data;
         }
     }
+
 }
