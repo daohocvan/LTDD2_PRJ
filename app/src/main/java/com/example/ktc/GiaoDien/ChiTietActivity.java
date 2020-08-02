@@ -47,9 +47,9 @@ public class ChiTietActivity extends AppCompatActivity {
         final String ma = getIntent().getExtras().getString("ma");
         final DBMonHoc dbMonHoc = new DBMonHoc(this);
         data_MonHoc = dbMonHoc.layDuLieuBangMaMonHoc(ma);
-        txtMaMonHoc.setText("Mã môn học: " + ma);
-        txtTenMonHoc.setText("Tên môn học: " + data_MonHoc.get(0).getTenMonHoc());
-        txtChiPhi.setText("Chi phí: " + data_MonHoc.get(0).getChiPhi());
+        txtMaMonHoc.setText(ma);
+        txtTenMonHoc.setText(data_MonHoc.get(0).getTenMonHoc());
+        txtChiPhi.setText(data_MonHoc.get(0).getChiPhi());
         btnXoa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
