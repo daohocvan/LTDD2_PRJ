@@ -71,6 +71,9 @@ public class CustomApdapterMonHoc extends ArrayAdapter {
         if(monHoc.getMaMonHoc().equals("JAVA1")){
             holder.imgHinh.setImageResource(R.drawable.java);
         }
+        if(monHoc.getMaMonHoc().equals("JAVA2")){
+            holder.imgHinh.setImageResource(R.drawable.java2);
+        }
         holder.tvTenMonHoc.setText("Tên môn học: " + monHoc.getTenMonHoc());
 //        int chiPhi = Integer.parseInt(monHoc.getChiPhi());
 //        DecimalFormat dcfPercent = new DecimalFormat("###,###,###");

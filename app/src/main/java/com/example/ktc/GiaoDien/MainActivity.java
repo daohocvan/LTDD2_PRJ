@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         array_MaMonHoc.add(new SpMaMonHoc("AR1", R.drawable.android2));
         array_MaMonHoc.add(new SpMaMonHoc("AR2", R.drawable.android));
         array_MaMonHoc.add(new SpMaMonHoc("JAVA1", R.drawable.java));
+        array_MaMonHoc.add(new SpMaMonHoc("JAVA2", R.drawable.java2));
         CustomSpMaMonHoc adapter_SpMaMonHoc= new CustomSpMaMonHoc(this, R.layout.sp_mamonhoc, array_MaMonHoc);
         spMaMonHoc.setAdapter(adapter_SpMaMonHoc);
 
