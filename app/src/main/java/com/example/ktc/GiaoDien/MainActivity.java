@@ -1,13 +1,12 @@
 package com.example.ktc.GiaoDien;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -30,7 +29,7 @@ import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
-    Button btnClear, btnThem;
+    Button btnClear, btnThem, btnChart;
     EditText txtTenMonHoc, txtChiPhi;
     ListView lvDanhSachMonHoc;
     Spinner spMaMonHoc;
@@ -73,6 +72,12 @@ public class MainActivity extends AppCompatActivity {
              spMaMonHoc.setSelection(0);
               txtTenMonHoc.setText("");
               txtChiPhi.setText("");
+          }
+      });
+      btnChart.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            startActivity(new Intent(getApplicationContext(), PieChartActivity.class));
           }
       });
     }
@@ -125,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
         txtChiPhi = findViewById(R.id.txtChiPhi);
         lvDanhSachMonHoc = findViewById(R.id.lvDanhSach);
         btnClear = findViewById(R.id.btnClear);
+        btnChart = findViewById(R.id.btnChart);
     }
 
     @Override

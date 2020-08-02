@@ -114,4 +114,20 @@ public class DBMonHoc {
 
         return data;
     }
+    public ArrayList<String> monHocDangCham() {
+        {
+            ArrayList<String> data = new ArrayList<>();
+            String sql = "SELECT DISTINCT MonHoc.mamonhoc from TTChamBai INNER JOIN PhieuChamBai ON TTChamBai.sophieu = PhieuChamBai.SoPhieu \n" +
+                    "INNER JOIN MonHoc ON TTChamBai.mamonhoc = MonHoc.mamonhoc";
+            SQLiteDatabase db = dbHelper.getReadableDatabase();
+            Cursor cursor = db.rawQuery(sql, null);
+            cursor.moveToFirst();
+            do {
+                data.add(cursor.getString(0));
+            }
+            while (cursor.moveToNext());
+            return data;
+        }
+    }
+
 }

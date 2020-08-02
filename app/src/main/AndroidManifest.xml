@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GiaoDien.TheodoithongtinCB"></activity>
+        <activity android:name=".GiaoDien.PieChartActivity"></activity>
+        <activity android:name=".GiaoDien.TheodoithongtinCB" />
         <activity
             android:name=".GiaoDien.Screen"
             android:theme="@style/AppTheme1">
@@ -19,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GiaoDien.MainActivity1"></activity>
+        <activity android:name=".GiaoDien.MainActivity1" />
         <activity android:name=".GiaoDien.PCBActivity" />
         <activity android:name=".GiaoDien.DanhSachPCB" />
         <activity android:name=".GiaoDien.ChiTietPCBActivity" />

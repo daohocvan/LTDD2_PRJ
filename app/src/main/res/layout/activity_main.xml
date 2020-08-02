@@ -12,7 +12,6 @@
         style="@style/tieude"
         android:background="#00BCD4"
         android:text="@string/thongtin" />
-
     <Spinner
         android:id="@+id/spMaMonHoc"
         style="@style/sp"/>
@@ -56,6 +55,17 @@
             android:background="@drawable/btn"
             android:drawableLeft="@drawable/ic_clear_alll_black_24dp"
             android:text="@string/clear"
+            android:textColorLink="#CDDC39" />
+
+        <Button
+            android:id="@+id/btnChart"
+            style="@style/btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/btn"
+            android:drawableLeft="@drawable/ic_baseline_pie_chart_24"
+            android:text="Chart"
             android:textColorLink="#CDDC39" />
         />
     </LinearLayout>
