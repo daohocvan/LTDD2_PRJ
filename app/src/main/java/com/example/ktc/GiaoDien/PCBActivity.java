@@ -66,11 +66,25 @@ public class PCBActivity extends AppCompatActivity {
         btnThem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
+                try{
+                    PCB PCB = new PCB();
                     DBPCB dbPCB = new DBPCB(getApplicationContext());
-                    PCB PCB = getPCB();
-                    dbPCB.Them(PCB);
-                    CapnhapDL();
+                    boolean flag = false;
+                    for(String soPhieu : dbPCB.laySoPhieu()){
+                        if (txtma.getText().toString().equals(soPhieu)) {
+                            flag = true;
+                        }
+                    }
+                    if(flag){
+                        Toast.makeText(getApplicationContext(), "Số phiếu đã tồn tại", Toast.LENGTH_LONG).show();
+                    }
+                    else{
+                        PCB.setSophieu(txtma.getText().toString());
+                        PCB.setNgaygiaobai(txthoten.getText().toString());
+                        PCB.setMagv(txtsdt.getSelectedItem().toString());
+                        dbPCB.Them(PCB);
+                        CapnhapDL();
+                    }
                 }catch (Exception ex){
 
                     lvDanhSach.setVisibility(View.GONE);
